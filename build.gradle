@@ -3,7 +3,9 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'war'
     id 'groovy'
+    id "org.flywaydb.flyway" version "6.1.0"
 }
+
 
 group = 'com.rschoen'
 version = '0.0.1-SNAPSHOT'
@@ -14,10 +16,19 @@ repositories {
 }
 
 dependencies {
+    id
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.codehaus.groovy:groovy'
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     compile "org.codehaus.groovy:groovy-all:2.5.7"
+
+    // Test
     testCompile "org.spockframework:spock-core:1.3-groovy-2.5"
+    testCompile "org.flywaydb:flyway-core:5.1.4"
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testCompile 'org.spockframework:spock-spring:+'
 }
 
+flyway {
+    url = "postgresql://spocktesting:spocktesting@localhost:5432/spocktesting"
+}

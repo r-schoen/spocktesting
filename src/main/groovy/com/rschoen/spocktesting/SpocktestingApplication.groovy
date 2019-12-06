@@ -9,5 +9,4 @@ class SpocktestingApplication {
     static void main(String[] args) {
         SpringApplication.run(SpocktestingApplication, args)
     }
-
 }
